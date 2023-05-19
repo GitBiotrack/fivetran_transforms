@@ -35,6 +35,7 @@ with sales as (
         tax_collected_excise,
         -- DEI-236
         current_timestamp() as extract_date
-    from postgres_cann_replication_public.sales_raw s join postgres_cann_replication_public.org o on s.org = o.orgid where s._fivetran_deleted = false
+    from postgres_cann_replication_public.sales_raw s join postgres_cann_replication_public.org o on s.org = o.orgid 
+    where s._fivetran_deleted = false and to_timestamp(datetime) > GETDATE() - interval '1095 days'
 )
 select * from sales
