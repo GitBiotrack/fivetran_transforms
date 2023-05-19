@@ -1,4 +1,13 @@
-with sales as (
+with 
+-- select customers from the nm trace schema
+sales as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'sales_raw') }}
+),
+org as (
+    select * from {{source('postgres_cann_replication_public','org')}}
+),
+selected as  (
     select
         org,
         location,
@@ -35,7 +44,7 @@ with sales as (
         tax_collected_excise,
         -- DEI-236
         current_timestamp() as extract_date
-    from postgres_cann_replication_public.sales_raw s join postgres_cann_replication_public.org o on s.org = o.orgid 
+    from sales s join org o on s.org = o.orgid 
     where s._fivetran_deleted = false and to_timestamp(datetime) > GETDATE() - interval '1095 days'
 )
-select * from sales
+select * from selected

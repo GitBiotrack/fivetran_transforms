@@ -1,4 +1,10 @@
-with customers as (
+with 
+-- select customers from the nm trace schema
+customers as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'customers_raw') }}
+),
+selected as (
 select
     org,
     customerid,
@@ -41,7 +47,7 @@ select
     case when birthyear is null  then 0 when birthyear = '' then 0 else (cast( EXTRACT( YEAR FROM current_timestamp()) as int) - Cast(birthyear as int)) end as Age,
     --DEI-236
     current_timestamp() as extract_date
-from postgres_cann_replication_public.customers_raw where _fivetran_deleted = false
+from customers where _fivetran_deleted = false
 )
 
-select * from customers where rank = 1
+select * from selected where rank = 1

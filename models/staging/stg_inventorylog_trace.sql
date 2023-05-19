@@ -1,4 +1,10 @@
-with inventorylog as (
+with 
+-- select customers from the nm trace schema
+inventorylog as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'log_bmsi_inventory_raw') }}
+),
+selected as  (
     select
         -- DEI-223 must be distinct as below does not fully dedup
         distinct
@@ -14,11 +20,11 @@ with inventorylog as (
         sessiontime,
         to_timestamp(sessiontime) as sessiontime_timestamp
 
-    from postgres_cann_replication_public.log_bmsi_inventory_raw where _fivetran_deleted = false
+    from inventoryraw where _fivetran_deleted = false
 )
 
 -- final select
 select *
-from inventorylog
+from selected
 -- take the original row of this inventory id
 where created = min_created

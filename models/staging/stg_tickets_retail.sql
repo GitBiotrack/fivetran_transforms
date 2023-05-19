@@ -1,4 +1,10 @@
-with tickets as (
+with 
+-- select customers from the nm trace schema
+tickets as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'tickets_raw') }}
+),
+selected as  (
     select
 
         org,
@@ -12,6 +18,6 @@ with tickets as (
         datetime,
         to_timestamp(datetime) as datetime_timestamp
 
-    from postgres_cann_replication_public.tickets_raw  where _fivetran_deleted = false
+    from tickets where _fivetran_deleted = false
 )
-select * from tickets where ticketid is not null 
+select * from selected where ticketid is not null 
