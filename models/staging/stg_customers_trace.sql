@@ -1,5 +1,10 @@
-
-with customers as (
+with 
+-- select customers from the nm trace schema
+customers as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'bmsi_customers_raw') }}
+),
+selected as (
     select
         org,
         customerid,
@@ -17,9 +22,9 @@ with customers as (
         created,
         max(created) over (partition by location, customerid) as max_created,
         current_timestamp() as extract_date
-     from postgres_cann_replication_public.bmsi_customers_raw where _fivetran_deleted = false
+     from customers where _fivetran_deleted = false
 )
 
 select *
-from customers
+from selected
 where created = max_created
