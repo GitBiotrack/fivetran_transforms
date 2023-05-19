@@ -1,5 +1,10 @@
-
-with sales  as (
+with 
+-- select customers from the nm trace schema
+sales as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'bmsi_dispensing_raw') }}
+),
+selected as  (
     -- get distinct values
     -- it should be distinct?
     select distinct
@@ -25,8 +30,8 @@ with sales  as (
         -- DEI-236
         current_timestamp() as extract_date
 
-    from postgres_cann_replication_public.bmsi_dispensing_raw where _fivetran_deleted = false and to_timestamp(sessiontime) > GETDATE() - interval '1095 days'
+    from sales where _fivetran_deleted = false and to_timestamp(sessiontime) > GETDATE() - interval '1095 days'
 )
 
 -- final selection
-select * from sales
+select * from selected

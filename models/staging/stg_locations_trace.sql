@@ -1,4 +1,10 @@
-with locations as (
+with 
+-- select customers from the nm trace schema
+locationsraw as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'bmsi_locations_raw') }}
+),
+selected as  (
     select
         -- constant for org
         org,
@@ -20,8 +26,8 @@ with locations as (
         -- DEI-246 legacy location id
         orgid || id as legacy_2_0_location
 
-    from postgres_cann_replication_public.bmsi_locations_raw where _fivetran_deleted = false
+    from locationsraw where _fivetran_deleted = false
 )
 
 -- final selection
-select * from locations
+select * from selected

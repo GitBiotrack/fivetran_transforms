@@ -1,4 +1,10 @@
-with inventory as (
+with 
+-- select customers from the nm trace schema
+inventory as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'bmsi_inventory_raw') }}
+),
+selected as (
     select
         org,
         orgid,
@@ -18,9 +24,9 @@ with inventory as (
 
         current_timestamp() as extract_date
 
-    from postgres_cann_replication_public.bmsi_inventory_raw where _fivetran_deleted = false
+    from inventory where _fivetran_deleted = false
 )
 
 --final selection
 select *
-from inventory
+from selected

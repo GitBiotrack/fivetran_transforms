@@ -1,4 +1,10 @@
-with locations as (
+with 
+-- select customers from the nm trace schema
+locations_raw as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'locations_raw') }}
+),
+selected as  (
     select
         org,
         id as location,
@@ -17,7 +23,7 @@ with locations as (
         coalesce(id, 0) as locid,
         LEFT(name, 50) as locname,
         current_timestamp() as date
-    from postgres_cann_replication_public.locations_raw where _fivetran_deleted = false
+    from locations_raw where _fivetran_deleted = false
 )
 
-select * from locations
+select * from selected

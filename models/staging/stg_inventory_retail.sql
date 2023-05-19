@@ -1,4 +1,10 @@
-with inventory as (
+with 
+-- select customers from the nm trace schema
+inventory as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'inventory_raw') }}
+),
+selected as (
     select
         regexp_replace(strain, '([^[:ascii:]])', '') as strain,
 		coalesce(location, 0) as location,
@@ -20,7 +26,7 @@ with inventory as (
         producer,
         inventorytype
 
-    from postgres_cann_replication_public.inventory_raw where _fivetran_deleted = false
+    from inventory where _fivetran_deleted = false
 )
 
-select * from inventory
+select * from selected

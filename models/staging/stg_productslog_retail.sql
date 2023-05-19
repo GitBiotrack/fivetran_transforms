@@ -1,4 +1,10 @@
-with productslog as (
+with 
+-- select customers from the nm trace schema
+productslog as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'productslog_raw') }}
+),
+selected as  (
     select
         org,
 		logid,
@@ -26,7 +32,7 @@ with productslog as (
         -- DEI-236
         current_timestamp() as extract_date
 
-	from postgres_cann_replication_public.productslog_raw where _fivetran_deleted = false
+	from productslog where _fivetran_deleted = false
 )
 
-select * from productslog where logid = max_logid
+select * from selected where logid = max_logid

@@ -1,4 +1,10 @@
-with taxcategories as (
+with 
+-- select customers from the nm trace schema
+taxcat as (
+    select *
+    from {{ source('postgres_cann_replication_public', 'taxcategories_raw') }}
+),
+selected as  (
     select
         org,
         id,
@@ -7,6 +13,6 @@ with taxcategories as (
         rate as taxrate,
         regexp_replace(name, '([^[:ascii:]])', '') as taxname,
         current_timestamp() as extract_date
-    from postgres_cann_replication_public.taxcategories_raw where _fivetran_deleted = false
+    from taxcat where _fivetran_deleted = false
 )
-select * from taxcategories
+select * from selected
