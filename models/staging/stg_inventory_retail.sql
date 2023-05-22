@@ -22,7 +22,7 @@ selected as (
         producer,
         inventorytype
 
-    from POSTGRES_CANN_REPLICATION_PUBLIC.inventory_raw where _fivetran_deleted = false
+    from inventory_raw where _fivetran_deleted = false
 )
 
 select * from selected

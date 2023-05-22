@@ -1,9 +1,5 @@
 with 
--- select customers from the nm trace schema
-inventorylog as (
-    select *
-    from {{ source('postgres_cann_replication_public', 'inventorylog_raw') }}
-),
+
 selected as  (
     select
         org,
@@ -23,7 +19,7 @@ selected as  (
         max(sessiontime) over (partition by org, location, id) as maxsessiontime,
         max(logid) over (partition by org, location, id) as maxlogid
 
-    from inventorylog where _fivetran_deleted = false
+    from inventorylog_raw where _fivetran_deleted = false
 )
 
 select *

@@ -1,9 +1,6 @@
 with 
 -- select customers from the nm trace schema
-locations_raw as (
-    select *
-    from {{ source('postgres_cann_replication_public', 'locations_raw') }}
-),
+
 selected as  (
     select
         org,
