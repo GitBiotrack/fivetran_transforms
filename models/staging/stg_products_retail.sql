@@ -1,9 +1,6 @@
 with 
 -- select customers from the nm trace schema
-products as (
-    select *
-    from {{ source('postgres_cann_replication_public', 'products_raw') }}
-),
+
 selected as  (
     select distinct
         regexp_replace(name, '([^[:ascii:]])', '') as name,
@@ -27,6 +24,6 @@ selected as  (
         costperunit,
         created,
         current_timestamp() as extract_date
-    from products where _fivetran_deleted = false
+    from products_raw where _fivetran_deleted = false
 )
 select * from selected

@@ -1,9 +1,6 @@
 with 
 -- select customers from the nm trace schema
-vendors as (
-    select *
-    from {{ source('postgres_cann_replication_public', 'vendors_raw') }}
-),
+
 selected as  (
     select
             id as vendorid,
@@ -11,6 +8,6 @@ selected as  (
             regexp_replace( LEFT(name, 100), '([^[:ascii:]])', '') as vendorname,
             name as vendor_name,
             current_timestamp() as extract_date
-    from vendors where _fivetran_deleted = false
+    from vendors_raw where _fivetran_deleted = false
 )
 select * from selected

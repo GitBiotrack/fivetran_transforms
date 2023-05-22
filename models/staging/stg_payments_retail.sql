@@ -1,9 +1,6 @@
 with 
 -- select customers from the nm trace schema
-payments as (
-    select *
-    from {{ source('postgres_cann_replication_public', 'payments_raw') }}
-),
+
 selected as  (
     select
         org,
@@ -13,7 +10,7 @@ selected as  (
         ticketid,
         current_timestamp() as extract_date
 
-    from payments where _fivetran_deleted = false
+    from payments_raw where _fivetran_deleted = false
     group by
         org,
         location,
