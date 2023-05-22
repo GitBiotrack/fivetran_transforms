@@ -20,7 +20,7 @@ selected as  (
         sessiontime,
         to_timestamp(sessiontime) as sessiontime_timestamp
 
-    from inventoryraw where _fivetran_deleted = false
+    from inventinventorylogoryraw where _fivetran_deleted = false
 )
 
 -- final select
