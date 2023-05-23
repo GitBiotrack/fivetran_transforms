@@ -5,9 +5,9 @@ selected as  (
         s.org,
         location,
         -- there is confusion about which price column to use. either price_adjusted_for_ticket_discounts or price_post_discount
-        price - price_post_everything as discountamt, --price_adjusted_for_ticket_discounts
+        price - price_adjusted_for_ticket_discounts as discountamt, --price_adjusted_for_ticket_discounts
         -- there is confusion about which price column to use. either price_adjusted_for_ticket_discounts or price_post_discount
-        price_post_everything as price_post_discount,
+        price_adjusted_for_ticket_discounts as price_post_discount,
         ticketid,
         refticketid as refund_ticketid,
         replication_val,
