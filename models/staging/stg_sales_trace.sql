@@ -1,6 +1,5 @@
 with 
 -- select customers from the nm trace schema
-sales as (
 
 selected as  (
     -- get distinct values
