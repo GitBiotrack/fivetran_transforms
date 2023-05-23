@@ -17,7 +17,7 @@ selected as  (
         sessiontime,
         to_timestamp(sessiontime) as sessiontime_timestamp
 
-    from log_bmsi_inventory_raw where _fivetran_deleted = false
+    from postgres_cann_replication_public.log_bmsi_inventory_raw where _fivetran_deleted = false
 )
 
 -- final select

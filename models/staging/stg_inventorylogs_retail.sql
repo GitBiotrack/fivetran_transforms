@@ -19,7 +19,7 @@ selected as  (
         max(sessiontime) over (partition by org, location, id) as maxsessiontime,
         max(logid) over (partition by org, location, id) as maxlogid
 
-    from inventorylog_raw where _fivetran_deleted = false
+    from postgres_cann_replication_public.inventorylog_raw where _fivetran_deleted = false
 )
 
 select *
