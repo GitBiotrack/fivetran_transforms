@@ -11,7 +11,7 @@ selected as  (
         -- DEI-236
         current_timestamp() as extract_date
 
-    from bmsi_inventorytypes_raw where _fivetran_deleted = false
+    from postgres_cann_replication_public.bmsi_inventorytypes_raw where _fivetran_deleted = false
 )
 
 -- final selection

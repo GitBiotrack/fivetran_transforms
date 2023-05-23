@@ -20,7 +20,7 @@ selected as  (
         coalesce(id, 0) as locid,
         LEFT(name, 50) as locname,
         current_timestamp() as date
-    from locations_raw where _fivetran_deleted = false
+    from postgres_cann_replication_public.locations_raw where _fivetran_deleted = false
 )
 
 select * from selected

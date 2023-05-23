@@ -28,7 +28,7 @@ selected as  (
         -- DEI-236
         current_timestamp() as extract_date
 
-    from bmsi_dispensing_raw where _fivetran_deleted = false and to_timestamp(sessiontime) > GETDATE() - interval '1095 days'
+    from postgres_cann_replication_public.bmsi_dispensing_raw where _fivetran_deleted = false and to_timestamp(sessiontime) > GETDATE() - interval '1095 days'
 )
 
 -- final selection

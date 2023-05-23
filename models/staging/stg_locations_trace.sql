@@ -23,7 +23,7 @@ selected as  (
         -- DEI-246 legacy location id
         orgid || id as legacy_2_0_location
 
-    from bmsi_locations_raw where _fivetran_deleted = false
+    from postgres_cann_replication_public.bmsi_locations_raw where _fivetran_deleted = false
 )
 
 -- final selection
