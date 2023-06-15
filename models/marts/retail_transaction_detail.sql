@@ -209,7 +209,8 @@ transaction_joins as (
         null as consumer_lifestage_insurance_group_description,
         null as consumer_electronics,
         -- DEI-256 removing data from this column, but keeping it in the table
-        null as location_type_desc_id
+        null as location_type_desc_id,
+        sales.last_sync
 
     from sales
     left join products_aggregate
