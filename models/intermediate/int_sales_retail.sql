@@ -92,7 +92,8 @@ the_behemoth as (
         -- constants
         0 as producer,
         -- DEI-236
-        current_timestamp() as extract_date
+        current_timestamp() as extract_date,
+        last_sync
 
     from sales_updated
     left join tickets

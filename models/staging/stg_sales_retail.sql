@@ -36,7 +36,8 @@ selected as  (
         -- DEI-23423
         tax_collected_excise,
         -- DEI-236
-        current_timestamp() as extract_date
+        current_timestamp() as extract_date,
+        s._FIVETRAN_SYNCED as last_sync
     from postgres_cann_replication_public.sales_raw s join postgres_cann_replication_public.org o on s.org = o.orgid 
     where s._fivetran_deleted = false and to_timestamp(datetime) > GETDATE() - interval '1095 days'
 )
