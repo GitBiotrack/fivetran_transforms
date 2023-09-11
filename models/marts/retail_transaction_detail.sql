@@ -118,7 +118,7 @@ transaction_joins as (
         products_aggregate.product_name,
 
         -- For cann 2.1
-        cast(products_aggregate.costperunit as double precision) as item_cost,
+        cast(products_aggregate.costperunit as double precision) * cast(sales.weight as double precision) as item_cost,
         products_aggregate.category,
         products_aggregate.manufacturer as source_manufacturer,
         products_aggregate.producer as source_producer,
@@ -231,3 +231,4 @@ from transaction_joins
 where is_refunded = 0
     and is_deleted = 0
     and lower(left(dispensary_license_type, 5)) = 'dispe'
+    
