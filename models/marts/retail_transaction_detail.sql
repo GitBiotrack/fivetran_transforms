@@ -38,6 +38,7 @@ products_aggregate as (
         vendor,
         inventorytype,
         product_name,
+        updated_category,
         max(costperunit) as costperunit
     from
         products
