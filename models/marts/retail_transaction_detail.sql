@@ -53,7 +53,8 @@ products_aggregate as (
         straintype,
         vendor,
         inventorytype,
-        product_name
+        product_name,
+        updated_category
 ),
 
 transaction_joins as (
