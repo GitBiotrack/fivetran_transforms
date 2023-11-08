@@ -94,6 +94,7 @@ join_dimensions as (
         -- product_categories
         product_categories.tracecat as category,
         product_categories.tracecat as updated_cat,
+        product_categories.new_category as updated_category,
 
         --INVENTORYTYPES i
         inventory_types.inventorytype,
