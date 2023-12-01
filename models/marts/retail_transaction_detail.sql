@@ -114,8 +114,8 @@ transaction_joins as (
         products_aggregate.inventorytype as source_inventorytype,
         products_aggregate.category as source_category,
         -- copy of above for cann 2.1 poc
-        products_aggregate.updated_category as source_product_name,
-        products_aggregate.product_name as product_category,
+        products_aggregate.product_name as source_product_name,
+        products_aggregate.updated_category as product_category,
         -- DEI-236 adding this in without the rename
         products_aggregate.product_name,
 
