@@ -29,7 +29,7 @@ select
     case when deleted is null then (0::smallint)::int::boolean else (deleted::smallint)::int::boolean END as deleted ,
     to_timestamp(membersince)  as membersince,
     case when iscaregiver is null then (0::smallint)::int::boolean else (iscaregiver::smallint)::int::boolean END as iscaregiver,
-    CASE when ismember = 1 then 1 when points > 0 then 1 else 0 end as ismember,
+    CASE when ismember >= 1 then 1 when points > 0 then 1 else 0 end as ismember,
     regexp_replace(redcard, '([^[:ascii:]])', '') as mmj,
     resolved_gender as gender,
     modified as modified ,
