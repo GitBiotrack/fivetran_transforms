@@ -73,6 +73,7 @@ second_rank_rename as (
         requires_weighing as requires_weighing,
         useable as useable,
         null as unit_type,
+        manufacturer,
         sessiontime,
         sessiontime_timestamp,
         ROW_NUMBER() OVER (PARTITION BY org, inventorytype, bt_legacy_product_id ORDER BY sessiontime DESC) rank2,
