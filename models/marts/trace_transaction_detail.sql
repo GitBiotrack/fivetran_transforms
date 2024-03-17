@@ -72,7 +72,7 @@ transaction_joins as (
         -- cann 2.1 ask DEI-200
         -- dispensary2 is joined on products.manufacturer_location
         dispensary2.location_name as product_manufacturer_name,
-        dispensary2.manufacturer as source_manufacturer,
+        products.manufacturer as source_manufacturer,
 
         -- products
         products.inventorytype as source_inventorytype,
