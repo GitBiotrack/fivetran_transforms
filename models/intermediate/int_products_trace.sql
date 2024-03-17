@@ -45,7 +45,7 @@ joined_and_ranked as (
         -- cann 2.1 addition DEI-200
         -- from log
         inventorylog.location as manufacturer_location,
-
+        inventory.manufacturer,
         -- constants
         current_timestamp() as extract_date,
         ROW_NUMBER() OVER (PARTITION BY inventory.productname, inventory.org, inventory.location, inventorytypes.name, inventory.id ORDER BY inventory.sessiontime DESC ) rank1
