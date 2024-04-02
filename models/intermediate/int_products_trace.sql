@@ -37,7 +37,7 @@ joined_and_ranked as (
         inventory.packageweight,
         inventory.strain,
         inventory.straintype,
-
+        inventory.adjustedsofar as costperunit,
         -- from inv type
         inventorytypes.name as category,
         inventorytypes.name as inventorytype,

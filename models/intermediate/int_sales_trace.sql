@@ -71,7 +71,7 @@ join_inventory as (
         COALESCE(inventory.strain, inventory.id::text) as prodstrain,
         inventory.straintype,
         inventory.productname,
-
+        inventory.adjustedsofar as costperunit
         -- from inventory types
         inventorytypes.name as tracecat,
         inventorytypes.name,

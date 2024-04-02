@@ -18,7 +18,7 @@ selected as (
         packageweight,
         sessiontime,
         to_timestamp(sessiontime) as sessiontime_timestamp,
-
+        adjustedsofar,
         current_timestamp() as extract_date,
         ppl_product_ppl_id as manufacturer
 
