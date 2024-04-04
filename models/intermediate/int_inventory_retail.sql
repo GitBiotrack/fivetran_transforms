@@ -47,7 +47,7 @@ inventory_summary as (
         inventory.expiration,
         inventory.producer,
         inventory.inventorytype,
-        invenotry.adjustedsofar,
+        --invenotry.adjustedsofar,
 		--from products
 		products.name,
 
