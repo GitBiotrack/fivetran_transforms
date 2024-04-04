@@ -92,7 +92,7 @@ transaction_joins as (
         cast(50 as double precision) as employee_upsell_target,
         cast(0 as double precision) as item_total_tax,
         -- cann 2.1 DEI-188
-        sales.price*0.4 as estimated_cost,
+        COALESE(sales.costperunit, sales.price*0.4) as estimated_cost,
         -- DEI-223
         current_timestamp() as extract_date,
 
