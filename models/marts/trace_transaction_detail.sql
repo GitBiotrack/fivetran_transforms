@@ -174,9 +174,9 @@ transaction_joins as (
     from sales
     left join products on sales.productid = products.productid
     -- join dispensary first time for most location info
-    left join dispensary dispensary1 on dispensary1.location = sales.location
+    left join dispensary dispensary1 on dispensary1.location = sales.location and s.org = dispensary1.org
     -- join dispensary second time on products for manufacturer name
-    left join dispensary dispensary2 on dispensary2.location = products.manufacturer_location
+    left join dispensary dispensary2 on dispensary2.location = products.manufacturer_location and s.org = dispensary2.org
     -- customerid is unique and location is not relevant for this join
     left join customers on customers.customerid = sales.customerid
 )
