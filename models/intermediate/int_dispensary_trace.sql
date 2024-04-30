@@ -48,7 +48,7 @@ joined as (
     from locations
     left join org
         -- org is a constant here but this join needs to happen
-        on org.orgid = locations.org and locations.org = org.org
+        on org.orgid = locations.org --and locations.org = org.orgid
 )
 
 -- final selection
