@@ -92,8 +92,8 @@ join_inventory as (
                            ORDER BY update_refunds.sessiontime DESC) rank
 
     from update_refunds
-    left join inventory on inventory.id = update_refunds.inventoryid
-    left join  inventorytypes on inventorytypes.id = inventory.inventorytypeid
+    left join inventory on inventory.id = update_refunds.inventoryid and update_refunds.org = inventory.org
+    left join  inventorytypes on inventorytypes.id = inventory.inventorytypeid and inventorytypes.org = inventory.org
 )
 
 -- final select

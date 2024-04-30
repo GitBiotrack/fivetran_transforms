@@ -51,8 +51,8 @@ joined_and_ranked as (
         ROW_NUMBER() OVER (PARTITION BY inventory.productname, inventory.org, inventory.location, inventorytypes.name, inventory.id ORDER BY inventory.sessiontime DESC ) rank1
 
     from inventory
-    left join inventorylog on inventorylog.id = inventory.id
-    left join inventorytypes on inventorytypes.id = inventory.inventorytypeid
+    left join inventorylog on inventorylog.id = inventory.id and inventorylog.org = inventory.org
+    left join inventorytypes on inventorytypes.id = inventory.inventorytypeid and inventorytypes.org = inventory.org
 ),
 
 -- ranking, if necessary, is needed because inventory is not unique
