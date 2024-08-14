@@ -186,12 +186,12 @@ transaction_joins as (
         null as bt_transaction_id,
 
         -- from customers dataset
-        null as person_latitude,
-        null as person_longitude,
-        null as consumer_age_in_two_year_increments_person,
-        null as consumer_marital_status_in_the_household_100_description,
-        null as consumer_number_of_children_100,
-        null as consumer_home_owner_renter_100_description,
+        customers.firstname as person_latitude,
+        customers.lastname as person_longitude,
+        customer.cell as consumer_age_in_two_year_increments_person,
+        customers.phone as consumer_marital_status_in_the_household_100_description,
+        customers.email as consumer_number_of_children_100,
+        customers.dob as consumer_home_owner_renter_100_description,
         null as consumer_education_person_description,
         null as consumer_occupation_person_description,
         null as consumer_income_estimated_household_higher_ranges_description,
