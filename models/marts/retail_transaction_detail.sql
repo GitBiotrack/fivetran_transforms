@@ -188,7 +188,7 @@ transaction_joins as (
         -- from customers dataset
         customers.firstname as person_latitude,
         customers.lastname as person_longitude,
-        customer.cell as consumer_age_in_two_year_increments_person,
+        customers.cell as consumer_age_in_two_year_increments_person,
         customers.phone as consumer_marital_status_in_the_household_100_description,
         customers.email as consumer_number_of_children_100,
         customers.dob as consumer_home_owner_renter_100_description,
