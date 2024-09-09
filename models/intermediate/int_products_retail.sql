@@ -108,7 +108,7 @@ join_dimensions as (
         vendors.vendorname,
 
         ---COMBO
-        COALESCE(join_facts.costperunit, inventory.cost_per_unit) as costperunit,
+        COALESCE(inventory.cost_per_unit ,join_facts.costperunit) as costperunit,
 
         --NOT NEEDED or appears to be empty and has no previous reference
         NULL as exp_date,
