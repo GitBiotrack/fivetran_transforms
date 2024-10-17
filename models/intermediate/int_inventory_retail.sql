@@ -60,7 +60,7 @@ inventory_summary as (
         -- constants
         --DEI-223
         current_timestamp() as extract_date, 
-        invenotry.cost_per_unit as cost_per_unit
+        inventory.cost_per_unit as cost_per_unit
 
     from inventory_logs
     left join inventory
