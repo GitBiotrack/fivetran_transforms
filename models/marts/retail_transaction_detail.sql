@@ -24,6 +24,11 @@ customers as (
     from {{ ref('int_customers_retail') }}
 ),
 
+inv as (
+    select *
+    from {{ ref('int_inventory_retail') }}
+),
+
 -- group by product to get max product cost
 -- ideally we'd dedup well before this step. This will suffice for now
 products_aggregate as (
@@ -121,7 +126,7 @@ transaction_joins as (
         products_aggregate.product_name,
 
         -- For cann 2.1
-        cast(products_aggregate.costperunit as double precision) * cast(sales.weight as double precision) as item_cost,
+        cast(inv.cost_per_unit as double precision) * cast(sales.weight as double precision) as item_cost,
         products_aggregate.category,
         products_aggregate.manufacturer as source_manufacturer,
         products_aggregate.producer as source_producer,
@@ -225,6 +230,7 @@ transaction_joins as (
     left join customers on customers.customerid = sales.customerid
         and customers.org  = sales.org
         and customers.location = sales.location
+    left join inv on inv.org = sales.org and inv.inventoryid = sales.inventoryid
 
 )
 
