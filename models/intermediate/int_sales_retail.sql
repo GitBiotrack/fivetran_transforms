@@ -82,7 +82,7 @@ the_behemoth as (
         sales_updated.refunded_updated as refunded,
         sales_updated.location,
         sales_updated.tax_collected_excise,
-
+        sales_updated.inventoryid,
         -- from tickets
         tickets.employee_userid,
 
