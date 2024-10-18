@@ -44,7 +44,7 @@ products_aggregate as (
         inventorytype,
         product_name,
         updated_category,
-        max(costperunit) as costperunit
+        avg(costperunit) as costperunit
     from
         products
     where productid is not null
@@ -126,7 +126,7 @@ transaction_joins as (
         products_aggregate.product_name,
 
         -- For cann 2.1
-        cast(inv.cost_per_unit as double precision) * cast(sales.weight as double precision) as item_cost,
+        cast(products_aggregate.costperunit as double precision) * cast(sales.weight as double precision) as item_cost,
         products_aggregate.category,
         products_aggregate.manufacturer as source_manufacturer,
         products_aggregate.producer as source_producer,
@@ -230,7 +230,7 @@ transaction_joins as (
     left join customers on customers.customerid = sales.customerid
         and customers.org  = sales.org
         and customers.location = sales.location
-    left join inv on inv.org = sales.org and inv.inventoryid = sales.inventoryid
+    --left join inv on inv.org = sales.org and inv.inventoryid = sales.inventoryid
 
 )
 
