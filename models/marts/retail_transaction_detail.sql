@@ -73,6 +73,7 @@ transaction_joins as (
         sales.ticketid,
         sales.tax_collected_excise,
         sales.paymentmethod,
+        sales.inventoryid,
 
         --cast(sales.transaction_time as date) as transaction_date,
         cast(sales.datetime_timestamp_tz as date) as transaction_date,
