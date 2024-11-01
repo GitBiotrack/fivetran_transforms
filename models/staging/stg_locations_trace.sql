@@ -21,7 +21,9 @@ selected as  (
         -- DEI-236
         current_timestamp() as extract_date,
         -- DEI-246 legacy location id
-        orgid || id as legacy_2_0_location
+        orgid || id as legacy_2_0_location,
+        loclatitude as lat,
+        loclongitude as lon
 
     from postgres_cann_replication_public.bmsi_locations_raw where _fivetran_deleted = false
 )
