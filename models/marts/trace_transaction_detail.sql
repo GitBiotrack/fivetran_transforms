@@ -108,8 +108,8 @@ transaction_joins as (
         -- null columns for cann 2.1 poc
         null as dispensary_store_size,
         null as dispensary_zip3,
-        null as dispensary_latitude,
-        null as dispensary_longitude,
+        dispensary1.lat as dispensary_latitude,
+        dispensary1.lon as dispensary_longitude,
         null as employee_id_hash,
         null as employee_sales_target,
         null as product_id,

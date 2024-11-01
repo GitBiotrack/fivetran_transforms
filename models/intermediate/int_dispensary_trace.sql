@@ -43,7 +43,9 @@ joined as (
         org.orgname as orgname,
 
         -- DEI-236
-        current_timestamp() as extract_date
+        current_timestamp() as extract_date,
+        locations.lat,
+        locations.lon
 
     from locations
     left join org
