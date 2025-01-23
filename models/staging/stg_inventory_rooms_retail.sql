@@ -7,7 +7,7 @@ selected as(
         id,
         coalesce(regexp_replace(roomname, '([^[:ascii:]])', ''), 'NA') as room,
         current_timestamp as extract_date
-    from post_cann__public.inventoryrooms_raw where _fivetran_deleted = false
+    from post_cann_public.inventoryrooms_raw where _fivetran_deleted = false
 )
 
 select * from selected
