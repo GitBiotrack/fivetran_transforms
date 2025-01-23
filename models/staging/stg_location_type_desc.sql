@@ -6,7 +6,7 @@ selected as  (
         description as description,
         state as state,
         locationtype as locationtype
-    from post_cann_public.location_type_desc where _fivetran_deleted = false
+    from post_cann_bt_public.location_type_desc where _fivetran_deleted = false
 )
 
 select *

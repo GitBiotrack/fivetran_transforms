@@ -22,7 +22,7 @@ selected as (
         current_timestamp() as extract_date,
         ppl_product_ppl_id as manufacturer
 
-    from postgres_cann_replication_public.bmsi_inventory_raw where _fivetran_deleted = false
+    from post_cann_bt_public.bmsi_inventory_raw where _fivetran_deleted = false
 )
 
 --final selection

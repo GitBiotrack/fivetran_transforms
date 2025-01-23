@@ -19,7 +19,7 @@ selected as (
         created,
         max(created) over (partition by location, customerid) as max_created,
         current_timestamp() as extract_date
-     from postgres_cann_replication_public.bmsi_customers_raw where _fivetran_deleted = false
+     from post_cann_bt_public.bmsi_customers_raw where _fivetran_deleted = false
 )
 
 select *

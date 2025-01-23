@@ -11,7 +11,7 @@ selected as  (
         current_timestamp() as extract_date,
        coalesce(regexp_replace(name, '([^[:ascii:]])', ''), 'NA') as new_category,
         coalesce(regexp_replace(name, '([^[:ascii:]])', ''), 'NA') as sub_category 
-    from post_cann_public.productcategories_raw p 
+    from post_cann_bt_public.productcategories_raw p 
     where _fivetran_deleted = false
 )
 

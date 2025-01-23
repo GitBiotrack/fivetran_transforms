@@ -19,7 +19,7 @@ selected as  (
         max(sessiontime) over (partition by org, location, id) as maxsessiontime,
         max(logid) over (partition by org, location, id) as maxlogid
 
-    from post_cann_public.inventorylog_raw where _fivetran_deleted = false 
+    from post_cann_bt_public.inventorylog_raw where _fivetran_deleted = false 
     and to_timestamp(sessiontime) > getdate() - interval '165 Days' 
 
     UNION
@@ -42,7 +42,7 @@ selected as  (
         max(sessiontime) over (partition by org, location, id) as maxsessiontime,
         max(logid) over (partition by org, location, id) as maxlogid
 
-    from post_cann_public.inventorylog_raw where _fivetran_deleted = false 
+    from post_cann_bt_public.inventorylog_raw where _fivetran_deleted = false 
     and (to_timestamp(sessiontime) < getdate() - interval '165 Days' and newweight = 0)
 )
 

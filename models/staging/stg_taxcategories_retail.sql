@@ -10,6 +10,6 @@ selected as  (
         rate as taxrate,
         regexp_replace(name, '([^[:ascii:]])', '') as taxname,
         current_timestamp() as extract_date
-    from post_cann_public.taxcategories_raw where _fivetran_deleted = false
+    from post_cann_bt_public.taxcategories_raw where _fivetran_deleted = false
 )
 select * from selected
