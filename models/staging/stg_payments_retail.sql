@@ -10,7 +10,7 @@ selected as  (
         ticketid,
         current_timestamp() as extract_date
 
-    from post_cann_public.payments_raw where _fivetran_deleted = false
+    from post_cann_bt_public.payments_raw where _fivetran_deleted = false
     group by
         org,
         location,

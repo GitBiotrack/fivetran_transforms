@@ -43,7 +43,7 @@ select
     case when birthyear is null  then 0 when birthyear = '' then 0 else (cast( EXTRACT( YEAR FROM current_timestamp()) as int) - Cast(birthyear as int)) end as Age,
     --DEI-236
     current_timestamp() as extract_date
-from post_cann_public.customers_raw where _fivetran_deleted = false
+from post_cann_bt_public.customers_raw where _fivetran_deleted = false
 )
 
 select * from selected where rank = 1

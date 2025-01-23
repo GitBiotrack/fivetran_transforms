@@ -8,7 +8,7 @@ selected as  (
         orgname as orgname,
         contact_name as time_zone
 
-    from post_cann_public.org where _fivetran_deleted = false
+    from post_cann_bt_public.org where _fivetran_deleted = false
 )
 
 select * from selected

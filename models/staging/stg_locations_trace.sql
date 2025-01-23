@@ -25,7 +25,7 @@ selected as  (
         loclatitude as lat,
         loclongitude as lon
 
-    from postgres_cann_replication_public.bmsi_locations_raw where _fivetran_deleted = false
+    from post_cann_bt_public.bmsi_locations_raw where _fivetran_deleted = false
 )
 
 -- final selection

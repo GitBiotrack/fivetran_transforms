@@ -22,7 +22,7 @@ selected as (
         producer,
         inventorytype
 
-    from post_cann_public.inventory_raw where _fivetran_deleted = false
+    from post_cann_bt_public.inventory_raw where _fivetran_deleted = false
 )
 
 select * from selected
