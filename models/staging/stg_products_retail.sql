@@ -24,6 +24,6 @@ selected as  (
         costperunit,
         created,
         current_timestamp() as extract_date
-    from postgres_cann_replication_public.products_raw where _fivetran_deleted = false and productcategory is not null
+    from post_cann_bt_public.products_raw where _fivetran_deleted = false and productcategory is not null
 )
 select * from selected
